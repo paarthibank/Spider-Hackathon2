@@ -21,23 +21,29 @@ sql.connect(function(err) {
 });
 sql.query("CREATE DATABASE IF NOT EXISTS Url");
 sql.query("USE Url");
-sql.query("CREATE TABLE IF NOT EXISTS Url(Main varchar(100) not null primary key,Short varchar(6) not null)");
+sql.query("CREATE TABLE IF NOT EXISTS Url(Main varchar(100) not null primary key,Short varchar(6) not null,Clickno int not null default 0)");
 con.get("/",function(req,resp){
 	var obj=[];
 	sql.query("SELECT * FROM Url",function(err,res,fields){
+		if(err) throw err;
 		for(i=0;i<res.length;i++){
 			obj.push({
 				main:res[i].Main,
-				short: res[i].Short
+				short: res[i].Short,
+				no:res[i].Clickno
 			})
 		}
+		
 		var send={
 			obj:obj
 		};
+		console.log(send);
 		resp.render("abc.ejs",send);
 		resp.end();
+		
 
 	})
+	
 	
 })
 con.post("/url",function(req,res){
@@ -53,8 +59,14 @@ con.get("/:id/s",function(req,resp){
 	var n1=req.params.id;
 	sql.query("SELECT * FROM Url WHERE Short=?",n1,function(err,res,fields){
 		var page=res[0].Main;
-		resp.redirect(page);
-		resp.end();
+		var click=parseInt(res[0].Clickno);
+		click++;
+		sql.query("UPDATE Url SET Clickno=? WHERE Short=?",[click,n1],function(err,res,fields){
+			if(err) throw err;
+			resp.redirect(page);
+			resp.end();
+		})
+		
 
 	})
 
