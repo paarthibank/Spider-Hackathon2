@@ -21,12 +21,16 @@
 	    <th scope="row">S.No</th>
 	    <th scope="row">Main website</th>
 	    <th scope="row">Shortened Url</th>
+	    <th scope="row">No Of Clicks</th>
 	  </tr>
 	  <%for(i=0;i<obj.length;i++){%>
 	  <tr>
 	    <td scope="col" class="rollno a"><%=i+1%></td>
 	    <td scope="col" class="name a"><%=obj[i].main%></td>
-	    <td scope="col" class="dept a"><%=obj[i].short%></td>
+	    <form action="/<%=obj[i].short%>/s" method="get">
+	    <td scope="col" class="dept a"><button type="submit" class="btn btn-secondary"><%=obj[i].short%></button></td>
+		</form>
+	    <td scope="col" class="name a"><%=obj[i].no%></td>
 	  </tr>
 	  <%}%>
 	  
