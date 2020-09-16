@@ -49,7 +49,7 @@ con.post("/url",function(req,res){
 	res.redirect("/");
 
 })
-con.get("/:id/short",function(req,resp){
+con.get("/:id/s",function(req,resp){
 	var n1=req.params.id;
 	sql.query("SELECT * FROM Url WHERE Short=?",n1,function(err,res,fields){
 		var page=res[0].Main;
