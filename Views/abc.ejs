@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+<body>
+	<form action="/url" method="post">
+	<div class="input-group mb-3">
+	  <input type="text" name="id" class="form-control" placeholder="Main" >
+	  
+	</div>
+	<button type="submit" class="btn btn-secondary">Submit</button><br><br>
+	
+
+	</form>
+	<table class="table">
+	  <tr>
+	    <th scope="row">S.No</th>
+	    <th scope="row">Main website</th>
+	    <th scope="row">Shortened Url</th>
+	  </tr>
+	  <%for(i=0;i<obj.length;i++){%>
+	  <tr>
+	    <td scope="col" class="rollno a"><%=i+1%></td>
+	    <td scope="col" class="name a"><%=obj[i].main%></td>
+	    <td scope="col" class="dept a"><%=obj[i].short%></td>
+	  </tr>
+	  <%}%>
+	  
+	</table>
+</body>
